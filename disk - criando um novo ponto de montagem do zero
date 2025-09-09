@@ -1,0 +1,23 @@
+# Substitua "/dev/sdx" pelo seu dispositivo apropriado
+
+# Criar partição no disco
+sudo fdisk /dev/sdx
+
+# Criar PV
+sudo pvcreate /dev/sdx1
+
+# Criar VG
+sudo vgcreate novovg /dev/sdx1
+
+# Criar LV
+sudo lvcreate -l 100%FREE -n novolv novovg
+
+# Criar sistema de arquivos
+sudo mkfs.ext4 /dev/novovg/novolv
+
+# Criar e montar ponto de montagem
+sudo mkdir /novoponto
+sudo mount /dev/novovg/novolv /novoponto
+
+# Redimensionar (exemplo para mostrar comando, use conforme necessário)
+sudo resize2fs /dev/novovg/novolv

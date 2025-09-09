@@ -1,0 +1,14 @@
+# Desmontar o volume
+sudo umount /ponto_de_montagem
+
+# Desativar LV
+sudo lvchange -an /dev/vg/lv
+
+# Remover LV
+sudo lvremove /dev/vg/lv
+
+# Remover PV do VG (substitua "/dev/sdx1" pelo PV real)
+sudo vgreduce vg /dev/sdx1
+
+# Remover PV
+sudo pvremove /dev/sdx1

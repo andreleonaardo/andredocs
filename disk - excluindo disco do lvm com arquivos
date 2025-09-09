@@ -1,0 +1,15 @@
+# Desmontar o volume
+sudo umount /ponto_de_montagem
+
+# Mover dados do PV
+sudo pvmove /dev/sdx1
+
+# Remover PV do VG
+sudo vgreduce vg /dev/sdx1
+
+# Remover PV
+sudo pvremove /dev/sdx1
+
+# Remontar o volume
+sudo lvchange -ay /dev/vg/lv
+sudo mount /dev/vg/lv /ponto_de_montagem
