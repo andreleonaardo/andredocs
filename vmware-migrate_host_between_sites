@@ -1,0 +1,29 @@
+Change host from 03300 to 03700
+
+-----------
+1:
+zoning:
+logon on san switch
+rename -zone alias- from 03300 to 03700
+clone -zone- from existent sfp03700mxbl03 zone
+
+-----------
+2:
+storage map:
+
+-----------
+3:
+change dell switch vlans (remove 03300 vlans and add 03700 vlans):
+
+-----------
+4:
+reset vmware config:
+  network settings
+  host profile
+  ntp
+
+-----------
+5:
+create dns record:
+
+
