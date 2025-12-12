@@ -1,0 +1,15 @@
+in the folder of your project, following these steps:
+
+update the image that you wanna get:
+  image: ghcr.io/open-webui/open-webui:v0.6.XX
+
+make the download of this image:
+  docker pull ghcr.io/open-webui/open-webui:v0.6.XX
+
+make off and remove your docker container:
+  docker-compose down
+
+wake up again:
+  docker-compose up -d
+
+if you wanna see the progress and find for posible errors.... (docker-compose logs -f)
