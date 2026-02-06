@@ -1,0 +1,27 @@
+https://dev.azure.com/Ailos/Ailos/_workitems/edit/1325045
+
+# conectar no redis através do endpoint do haproxy
+REDISCLI_AUTH="$REDIS_PASSWORD" redis-cli -h redis-pcr-proxy.pcr-qa.svc.cluster.local -p 6379
+
+# executar testes dentro do client do redis
+SET teste 1234
+KEYS *
+GET teste
+QUIT
+
+# desconectar do pod redis-client
+exit
+
+# destruir o pod redis-client
+kubectl delete pod redis-client --namespace pcr-qa
+
+-
+
+apt-get update
+apt-get install redis-tools
+apt-get install telnet -y
+apt-get install iputils-ping -y
+
+-
+
+PcrRedisQA123
