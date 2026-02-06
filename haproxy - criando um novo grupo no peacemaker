@@ -1,3 +1,9 @@
+***No haproxy
+ 
+systemctl  status haproxy-totvsfinancialh
+ 
+Configuração peacemaker
+ 
 # verificar status pacemaker
 pcs status
  
@@ -9,6 +15,7 @@ pcs resource show LB_totvsfinancialprd
  
 # criar recurso de IP
 pcs resource create IP_totvsfinancialprd IPaddr2 ip=10.100.0.129 cidr_netmask=24 op monitor interval=30s meta resource-stickiness=100
+10.41.204.55 (CTBA)
  
 # criar recurso do haproxy
 pcs resource create HAProxy_totvsfinancialprd systemd:haproxy-totvsfinancialh op monitor interval=10s meta resource-stickiness=100
@@ -18,3 +25,10 @@ pcs resource group add LB_totvsfinancialprd IP_totvsfinancialprd HAProxy_totvsfi
  
 #start grupo (nos LBs final 01)
 pcs resource enable LB_totvsfinancialprd
+ 
+--
+# Restart do recurso
+pcs resource restart LB_totvsfinancialprd
+pcs resource cleanup
+#mover o serviço de um nó para outro
+pcs resource move LB_bankpro svp03700lb01
